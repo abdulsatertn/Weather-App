@@ -1,27 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/main.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/pages/search_page.dart';
 import 'package:weather_app/providers/weather_provider.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  void updateUi() {
-    setState(() {});
-  }
-
+class HomePage extends StatelessWidget {
   WeatherModel? weatherData;
   @override
   Widget build(BuildContext context) {
-    weatherData = Provider.of<WeatherProvider>(context).weatherData;
+    // weatherData = Provider.of<WeatherProvider>(context).weatherData;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,9 +16,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SearchPage(
-                  updateUi: updateUi,
-                );
+                return SearchPage();
               }));
             },
             icon: Icon(Icons.search),
@@ -39,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         ],
         title: Text('Weather App'),
       ),
-      body: Provider.of<WeatherProvider>(context).weatherData == null
+      body: true
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

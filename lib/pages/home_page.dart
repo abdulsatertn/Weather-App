@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is WeatherSuccess) {
+            weatherData = BlocProvider.of<WeatherCubit>(context).weatherModel;
             return SuccessBody(weatherData: weatherData);
           } else if (state is WeatherFailure) {
             return Center(
@@ -105,7 +106,7 @@ class SuccessBody extends StatelessWidget {
             flex: 3,
           ),
           Text(
-            Provider.of<WeatherProvider>(context).cityName!,
+            BlocProvider.of<WeatherCubit>(context).cityName!,
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,

@@ -18,9 +18,8 @@ class SearchPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: TextField(
-            onChanged: (data)
-            {
-               cityName = data;
+            onChanged: (data) {
+              cityName = data;
             },
             onSubmitted: (data) async {
               cityName = data;
@@ -30,8 +29,10 @@ class SearchPage extends StatelessWidget {
               WeatherModel? weather =
                   await service.getWeather(cityName: cityName!);
 
-              Provider.of<WeatherProvider>(context,listen: false).weatherData = weather;
-                           Provider.of<WeatherProvider>(context,listen: false).cityName = cityName;
+              Provider.of<WeatherProvider>(context, listen: false).weatherData =
+                  weather;
+              Provider.of<WeatherProvider>(context, listen: false).cityName =
+                  cityName;
 
               Navigator.pop(context);
             },
@@ -40,20 +41,20 @@ class SearchPage extends StatelessWidget {
                   EdgeInsets.symmetric(vertical: 32, horizontal: 24),
               label: Text('search'),
               suffixIcon: GestureDetector(
-                
-                onTap : () async 
-                {
+                  onTap: () async {
                     WeatherService service = WeatherService();
 
-              WeatherModel? weather =
-            await service.getWeather(cityName: cityName!);
+                    WeatherModel? weather =
+                        await service.getWeather(cityName: cityName!);
 
-              Provider.of<WeatherProvider>(context,listen: false).weatherData = weather;
-                           Provider.of<WeatherProvider>(context,listen: false).cityName = cityName;
+                    Provider.of<WeatherProvider>(context, listen: false)
+                        .weatherData = weather;
+                    Provider.of<WeatherProvider>(context, listen: false)
+                        .cityName = cityName;
 
-              Navigator.pop(context);
-                },
-                child: Icon(Icons.search)),
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.search)),
               border: OutlineInputBorder(),
               hintText: 'Enter a city',
             ),
@@ -63,4 +64,3 @@ class SearchPage extends StatelessWidget {
     );
   }
 }
-
